@@ -1,7 +1,10 @@
 import { fetchUserById } from "./fetchUserById.js";
 
-// Задание 2: протестируйте успех (resolves.toEqual) и отклонение (rejects.toThrow).
-// Для страховки от забытого await можно добавить expect.assertions(1).
+test("fetchUserById: возвращает пользователя по id (resolves.toEqual)", async () => {
+  await expect(fetchUserById(1)).resolves.toEqual({ id: 1, name: "Аня" });
+});
 
-test.todo("fetchUserById: возвращает пользователя по id (resolves.toEqual)");
-test.todo("fetchUserById: несуществующий id → отклонение (rejects.toThrow)");
+test("fetchUserById: несуществующий id → отклонение (rejects.toThrow)", async () => {
+  expect.assertions(1);
+  await expect(fetchUserById(999)).rejects.toThrow("Пользователь не найден");
+});

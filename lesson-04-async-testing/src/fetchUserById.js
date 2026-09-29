@@ -7,5 +7,11 @@ const USERS = [
 ];
 
 export async function fetchUserById(id) {
-  throw new Error("Реализуйте функцию fetchUserById (см. README.md)");
+  const user = USERS.find((u) => u.id === id);
+
+  if (!user) {
+    throw new Error("Пользователь не найден");
+  }
+
+  return user;
 }
